@@ -12,12 +12,13 @@ import android.widget.TextView;
 public class Main2Activity extends AppCompatActivity {
 
     Button btn1, btn2, btn3, btn4, btn5, btn6, btn7, btn8, btn9, btn0,
-            btnadd, btndiv, btnmul, btnsub, btnequlas, btnClear,btndel,btnjum;
+            btnadd, btndiv, btnmul, btnsub, btnequlas, btnClear,btndel;
 
     TextView text;
     EditText edit;
 
-    Double a;
+    Integer a ;
+    Integer b ;
     int operator = 0;
 
     @Override
@@ -43,7 +44,6 @@ public class Main2Activity extends AppCompatActivity {
         btnequlas = (Button) findViewById(R.id.btnequals);
         btnClear = (Button) findViewById(R.id.btnClear);
         btndel = (Button) findViewById(R.id.btndel);
-        btnjum = (Button) findViewById(R.id.btnjum);
 
         text = (TextView) findViewById(R.id.t1);
         edit = (EditText) findViewById(R.id.e1);
@@ -58,7 +58,7 @@ public class Main2Activity extends AppCompatActivity {
 
 
                     if(v == btn1) {
-                        edit.setText(edit.getText().toString() + 1);
+                        edit.setText(edit.getText().toString() + 1); //
                     } else if (v == btn2) {
                         edit.setText(edit.getText().toString() + 2);
                     } else if (v == btn3) {
@@ -77,48 +77,46 @@ public class Main2Activity extends AppCompatActivity {
                         edit.setText(edit.getText().toString() + 9);
                     } else if (v == btn0) {
                         edit.setText(edit.getText().toString() + 0);
-                    } else if (v == btnjum) {
-                        edit.setText(edit.getText().toString() + ".");
-                    } else if (v == btndel) {
+                    } else if (v == btndel) {  //한글자 삭제
                         edit.setText(edit.getText().toString().substring(0,edit.getText().length()-1));
-                    } else if (v == btnadd) {
-                        a = Double.valueOf(0+edit.getText().toString().trim());
+                    } else if (v == btnadd) { //더하기
+                        a = Integer.valueOf(0+edit.getText().toString().trim());
+                        edit.setText("");
                         operator = 1;
                     } else if (v == btndiv) {
-                        a = Double.valueOf(0+edit.getText().toString().trim());
+                        a = Integer.valueOf(0+edit.getText().toString().trim());
+                        edit.setText(""); //나누기
                         operator = 2;
                     } else if (v == btnmul) {
-                        a = Double.valueOf(0+edit.getText().toString().trim());
+                        a = Integer.valueOf(0+edit.getText().toString().trim());
+                        edit.setText(""); //곱하기
                         operator = 3;
                     } else if (v == btnsub) {
-                        a = Double.valueOf(0+edit.getText().toString().trim());
-
+                        a = Integer.valueOf(0+edit.getText().toString().trim());
+                        edit.setText("");    //빼기
                         operator = 4;
+                    //결과
                     } else if (v == btnequlas) {
-                        edit.setText("");
                         if (operator == 1) {
-                            a += Double.valueOf(0+edit.getText().toString().trim());
-                            edit.setText(Double.toString(a).substring(0,edit.getText().length()+3));
+                            a = a + Integer.valueOf(edit.getText().toString().trim());
+                            edit.setText(Integer.toString(a));
                         } else if (operator == 2) {
-                            a /= Double.valueOf(0+edit.getText().toString().trim());
-                            edit.setText(Double.toString(a).substring(0,edit.getText().length()+3));
+                            a = a / Integer.valueOf(edit.getText().toString().trim());
+                            edit.setText(Integer.toString(a));
                         } else if (operator == 3) {
-                            a *= Double.valueOf(0+edit.getText().toString().trim());
-                            edit.setText(Double.toString(a).substring(0,edit.getText().length()+3));
+                            a = a * Integer.valueOf(edit.getText().toString().trim());
+                            edit.setText(Integer.toString(a));
                         } else if (operator == 4) {
-                            a -= Double.valueOf(0+edit.getText().toString().trim());
-                            edit.setText(Double.toString(a).substring(0,edit.getText().length()+3));
+                            a = a - Integer.valueOf(edit.getText().toString().trim());
+                            edit.setText(Integer.toString(a));
                         }
-
+                    //클리어
                     } else if (v == btnClear) {
                         edit.setText("");
                     }
 
 
                 }
-
-
-
 
         };
         btn1.setOnClickListener(cl);
@@ -138,7 +136,6 @@ public class Main2Activity extends AppCompatActivity {
         btnequlas.setOnClickListener(cl);
         btnClear.setOnClickListener(cl);
         btndel.setOnClickListener(cl);
-        btnjum.setOnClickListener(cl);
         }
 
 }
