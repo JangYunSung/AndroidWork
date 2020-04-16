@@ -12,13 +12,14 @@ import android.widget.TextView;
 public class Main2Activity extends AppCompatActivity {
 
     Button btn1, btn2, btn3, btn4, btn5, btn6, btn7, btn8, btn9, btn0,
-            btnadd, btndiv, btnmul, btnsub, btnequlas, btnClear,btndel;
+            btnadd, btndiv, btnmul, btnsub, btnequlas, btnClear,btndel,btnjum;
 
     TextView text;
     EditText edit;
 
-    Integer a ;
-    Integer b ;
+    Double a = 0.0;
+    Double b=0.0 ;
+    Double result;
     int operator = 0;
 
     @Override
@@ -44,6 +45,7 @@ public class Main2Activity extends AppCompatActivity {
         btnequlas = (Button) findViewById(R.id.btnequals);
         btnClear = (Button) findViewById(R.id.btnClear);
         btndel = (Button) findViewById(R.id.btndel);
+        btnjum = (Button) findViewById(R.id.btnjum);
 
         text = (TextView) findViewById(R.id.t1);
         edit = (EditText) findViewById(R.id.e1);
@@ -54,69 +56,99 @@ public class Main2Activity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-
-
-
-                    if(v == btn1) {
-                        edit.setText(edit.getText().toString() + 1); //
-                    } else if (v == btn2) {
-                        edit.setText(edit.getText().toString() + 2);
-                    } else if (v == btn3) {
-                        edit.setText(edit.getText().toString() + 3);
-                    } else if (v == btn4) {
-                        edit.setText(edit.getText().toString() + 4);
-                    } else if (v == btn5) {
-                        edit.setText(edit.getText().toString() + 5);
-                    } else if (v == btn6) {
-                        edit.setText(edit.getText().toString() + 6);
-                    } else if (v == btn7) {
-                        edit.setText(edit.getText().toString() + 7);
-                    } else if (v == btn8) {
-                        edit.setText(edit.getText().toString() + 8);
-                    } else if (v == btn9) {
-                        edit.setText(edit.getText().toString() + 9);
-                    } else if (v == btn0) {
-                        edit.setText(edit.getText().toString() + 0);
-                    } else if (v == btndel) {  //한글자 삭제
-                        edit.setText(edit.getText().toString().substring(0,edit.getText().length()-1));
-                    } else if (v == btnadd) { //더하기
-                        a = Integer.valueOf(0+edit.getText().toString().trim());
-                        edit.setText("");
-                        operator = 1;
-                    } else if (v == btndiv) {
-                        a = Integer.valueOf(0+edit.getText().toString().trim());
-                        edit.setText(""); //나누기
-                        operator = 2;
-                    } else if (v == btnmul) {
-                        a = Integer.valueOf(0+edit.getText().toString().trim());
-                        edit.setText(""); //곱하기
-                        operator = 3;
-                    } else if (v == btnsub) {
-                        a = Integer.valueOf(0+edit.getText().toString().trim());
-                        edit.setText("");    //빼기
-                        operator = 4;
-                    //결과
-                    } else if (v == btnequlas) {
-                        if (operator == 1) {
-                            a = a + Integer.valueOf(edit.getText().toString().trim());
-                            edit.setText(Integer.toString(a));
-                        } else if (operator == 2) {
-                            a = a / Integer.valueOf(edit.getText().toString().trim());
-                            edit.setText(Integer.toString(a));
-                        } else if (operator == 3) {
-                            a = a * Integer.valueOf(edit.getText().toString().trim());
-                            edit.setText(Integer.toString(a));
-                        } else if (operator == 4) {
-                            a = a - Integer.valueOf(edit.getText().toString().trim());
-                            edit.setText(Integer.toString(a));
+                if(v == btn1) {
+                    edit.setText(edit.getText().toString() + 1); //
+                } else if (v == btn2) {
+                    edit.setText(edit.getText().toString() + 2);
+                } else if (v == btn3) {
+                    edit.setText(edit.getText().toString() + 3);
+                } else if (v == btn4) {
+                    edit.setText(edit.getText().toString() + 4);
+                } else if (v == btn5) {
+                    edit.setText(edit.getText().toString() + 5);
+                } else if (v == btn6) {
+                    edit.setText(edit.getText().toString() + 6);
+                } else if (v == btn7) {
+                    edit.setText(edit.getText().toString() + 7);
+                } else if (v == btn8) {
+                    edit.setText(edit.getText().toString() + 8);
+                } else if (v == btn9) {
+                    edit.setText(edit.getText().toString() + 9);
+                } else if (v == btn0) {
+                    edit.setText(edit.getText().toString() + 0);
+                } else if (v == btnjum) {
+                    edit.setText(edit.getText().toString() + ".");
+                } else if (v == btndel) {
+                    edit.setText(edit.getText().toString().substring(0,edit.getText().length()-1));
+                } else if (v == btnadd) {
+                    while (true) {
+                        if (a == 0.0) {
+                            a = Double.valueOf(0+edit.getText().toString().trim());
+                        } else if(a != 0) {
+                            b = Double.valueOf(0+edit.getText().toString().trim());
+                            break;
                         }
-                    //클리어
-                    } else if (v == btnClear) {
+                    }
+                        edit.setText("");
+                        result = a + b;
+                } else if (v == btndiv) {
+                    while (true){
+                    if(a==0.0){
+                        a = Double.valueOf(0+edit.getText().toString().trim());
+                    }else if (a != 0.0){
+                        b = Double.valueOf(0+edit.getText().toString().trim());
+                        break;
+                    }
+                    }
+                        result = a / b;
+                        edit.setText("");
+                } else if (v == btnmul) {
+                    while (true) {
+                        if (a == 0.0) {
+                            a = Double.valueOf(0+edit.getText().toString().trim());
+                        } else {
+                            b = Double.valueOf(0+edit.getText().toString().trim());
+                            break;
+                        }
+                    }
+                        result = a * b;
+                        edit.setText("");
+                } else if (v == btnsub) {
+                    while (true) {
+                        if (a == 0.0) {
+                            a = Double.valueOf(0+edit.getText().toString().trim());
+                        } else {
+                            b = Double.valueOf(0+edit.getText().toString().trim());
+                            break;
+                        }
+                        result = a - b;
                         edit.setText("");
                     }
+                } else if (v == btnequlas) {
+//                    if (operator == 1) {
+//                        a = a + Double.valueOf(""+edit.getText().toString().trim());
+//                        edit.setText(Double.toString(a));
+//                    } else if (operator == 2) {
+//                        a = a / Double.valueOf(""+edit.getText().toString().trim());
+//                        edit.setText(Double.toString(a));
+//                    } else if (operator == 3) {
+//                        a = a * Double.valueOf(""+edit.getText().toString().trim());
+//                        edit.setText(Double.toString(a));
+//                    } else if (operator == 4) {
+//                        a = a - Double.valueOf(""+edit.getText().toString().trim());
+//                        edit.setText(Double.toString(a));
+//                    }
+                    edit.setText(Double.toString(result));
 
-
+                } else if (v == btnClear) {
+                    edit.setText("");
                 }
+
+
+            }
+
+
+
 
         };
         btn1.setOnClickListener(cl);
@@ -136,6 +168,7 @@ public class Main2Activity extends AppCompatActivity {
         btnequlas.setOnClickListener(cl);
         btnClear.setOnClickListener(cl);
         btndel.setOnClickListener(cl);
-        }
+        btnjum.setOnClickListener(cl);
+    }
 
 }
