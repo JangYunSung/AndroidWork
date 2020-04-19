@@ -19,13 +19,10 @@ import android.widget.EditText;
  *  안드로이드는 startActivity() 로 새 액티비티를 시작하면
  *  적측형(stack) 구조로 액티비티가 운영된다.
  */
-
-
 public class Main2Activity extends AppCompatActivity {
 
-    EditText etName, etAge;
-
-
+    EditText etName;
+    EditText etAge;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,49 +38,65 @@ public class Main2Activity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(
-                        getApplicationContext(),   //현재 화면의 제어권자
-                        MyTwo.class                 // 다음화면의 액티비티 클래스 지정
+                        getApplicationContext(),   // 현재 화면의 제어권자
+                        MyTwo.class                // 다음 화면의 액티비티 클래스 지정
                 );
 
+                // 데이터를 Intent 에 실어서 보내기
+                // name : 데이터 형태로 보냄
+                intent.putExtra("num", 3);
+                intent.putExtra("num2", 7);
+                intent.putExtra("long", 33L);
+                intent.putExtra("msg", "안녕하세요");
 
-                //데이터를 Intent 에 실어서 보내기
-                //name : 데이터 형태로 보냄
-                intent.putExtra("num",3);
-                intent.putExtra("num2",7);
-                intent.putExtra("long",33L);
-                intent.putExtra("msg","안녕하세요");
-
-
-                //이름 , 나이 --. Person 에 담은뒤 Intent 에 실어 보내기
+                // 이름, 나이 --> Person 에 담은뒤 Intent 에 실어 보내기
                 Person p = new Person(
                         etName.getText().toString(),
                         Integer.parseInt(etAge.getText().toString())
                 );
 
-                intent.putExtra("Person",p);
+                intent.putExtra("Person", p);
 
-                startActivity(intent);  // 다음화면으로 넘어간다
-
-
-
-
-
+                startActivity(intent);   // 다음화면으로 넘어간다
             }
         });
 
-
-        Button btnfinish = findViewById(R.id.btnFinish);
-        btnfinish.setOnClickListener(new View.OnClickListener() {
+        Button btnFinish = findViewById(R.id.btnFinish);
+        btnFinish.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                finish(); //액티비티 종료
+                finish();   // 액티비티 종료
             }
         });
 
+    } // end onCreate
 
 
-    }
+} // end Activity
 
 
 
-}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

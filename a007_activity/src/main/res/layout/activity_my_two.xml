@@ -43,5 +43,3 @@
         android:text="메인액티비티 startActivity()"
         android:textAppearance="@style/TextAppearance.AppCompat.Large" />
 </LinearLayout>
-
-
