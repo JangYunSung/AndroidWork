@@ -11,7 +11,6 @@ import androidx.appcompat.app.AppCompatActivity;
 
 public class PhonebookDetail extends AppCompatActivity {
 
-    ImageView ivPhoto;
     TextView tvName, tvage, tvaddr;
 
     @Override

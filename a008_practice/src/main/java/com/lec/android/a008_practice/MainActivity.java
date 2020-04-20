@@ -62,7 +62,7 @@ public class MainActivity extends AppCompatActivity {
 //        D.FACEID[idx], D.NAME[idx], D.PHONE[idx], D.EMAIL[idx])
         // 리스트 맨 앞에 추가
         adapter.addItem(0, new Phonebook(etname.getText().toString(),etage.getText().toString(),etaddr.getText().toString()));
-        adapter.notifyDataSetChanged();  // 데이터변경을 Adapter 에 알리고, 리스트뷰에 반영 .
+        adapter.notifyDataSetChanged();  // 데이터변경을 Adapter 에 알리고, 리스트뷰에 반영.
     }
 
 
