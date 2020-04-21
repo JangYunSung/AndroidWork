@@ -4,6 +4,28 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".HowToPlay">
+    tools:context=".HowToPlay"
+    android:background="@drawable/main">
 
+    <TextView
+        android:id="@+id/textView"
+        android:background="#AAFFFFFF"
+        android:layout_width="315dp"
+        android:layout_height="127dp"
+        android:layout_marginStart="60dp"
+        android:layout_marginTop="60dp"
+        android:text="떨어지는 블럭과 \n 같은 색상의 버튼을 누르세요!"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/btnBack"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="60dp"
+        android:layout_marginBottom="50dp"
+        android:text="BACK"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>
