@@ -19,6 +19,9 @@ package com.lec.android.a010_storage;
  */
 
 
+// Device File Explorer 에서 생성된 파일 확인 가능
+// Pixel2 폰의 경우
+
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
