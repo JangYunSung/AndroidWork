@@ -41,11 +41,11 @@ public class Main4Activity extends AppCompatActivity {
         etName = findViewById(R.id.etName);
         etAge = findViewById(R.id.etAge);
         etAddress = findViewById(R.id.etAddress);
-        btnInsert = findViewById(R.id.btnInsert);
         btnUpdate = findViewById(R.id.btnUpdate);
         btnDelete = findViewById(R.id.btnDelete);
         btnSelect = findViewById(R.id.btnSelect);
         tvResult = findViewById(R.id.tvResult);
+        btnInsert = findViewById(R.id.btnInsert);
 
         helper = new MySQLiteOpenHelper4(
                 this,

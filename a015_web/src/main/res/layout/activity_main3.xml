@@ -4,24 +4,23 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    tools:context=".MainActivity" >
+    android:orientation="vertical">
 
     <TextView
-        android:id="@+id/tvTitle"
+        android:id="@+id/textView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="HttpURLConnection"
+        android:text="XML,JSON"
         android:textAppearance="@style/TextAppearance.AppCompat.Display1" />
 
     <EditText
-        android:id="@+id/etUrl"
+        android:id="@+id/editText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
-        android:hint="사이트 주소 입력"
         android:inputType="textPersonName"
-        android:text="https://m.naver.com" />
+        android:hint="역명을 입력해주세요"
+        android:text="서울" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -29,35 +28,38 @@
         android:orientation="horizontal">
 
         <Button
-            android:id="@+id/btnWebView"
-            android:layout_width="match_parent"
+            android:id="@+id/btnXML"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="요청하기" />
+            android:text="xml보기" />
 
         <Button
-            android:id="@+id/btnBrowser"
-            android:layout_width="match_parent"
+            android:id="@+id/btnJSON"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="지우기" />
+            android:text="json보기" />
+
+        <Button
+            android:id="@+id/btnParse"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="파싱" />
     </LinearLayout>
 
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <LinearLayout
+        <TextView
+            android:id="@+id/tvResult"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical" >
-
-            <TextView
-                android:id="@+id/tvResult"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textSize="20sp" />
-        </LinearLayout>
+            android:text="결과값" />
     </ScrollView>
 
 </LinearLayout>
+
+

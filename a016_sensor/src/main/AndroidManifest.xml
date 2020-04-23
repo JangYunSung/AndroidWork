@@ -1,9 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.gamil.ahqksu45.profilemanager">
-
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    package="com.lec.android.a016_sensor">
 
     <application
         android:allowBackup="true"
@@ -12,14 +9,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-
-       <activity android:name=".ProfileDetail"/>
-
-        <activity
-            android:name=".Add"
-            android:label=" Main -> Add "
-            android:parentActivityName=".Main"></activity>
-        <activity android:name=".Main">
+        <activity android:name=".Main2Activity"></activity>
+        <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

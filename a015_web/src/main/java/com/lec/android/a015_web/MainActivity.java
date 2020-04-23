@@ -1,20 +1,6 @@
 package com.lec.android.a015_web;
-/* HTTP 요청하기
-   - 메니페스트 설정 하기 : android.permission.INTERNET 권한
-   - <application> 에 추가 usesCleartextTraffic="true"
-       HTTP와 같은 cleartext 네트워크 트래픽을 사용할지 여부를 나타내는 flag로
-       이 플래그가 flase 로 되어 있으면, 플랫폼 구성 요소 (예 : HTTP 및 FTP 스택, DownloadManager, MediaPlayer)는
-       일반 텍스트 트래픽 사용에 대한 앱의 요청을 거부하게 됩니다. 이 flag를 설정하게 되면 모든 cleartext 트래픽은 허용처리가 됩니다
 
-   - URL 객체 만들기 -> HttpURLConnection 객체 만들기
-       setXXX() 메소르도 Conneciton 세팅
-           ex) setRequestMethod(method) :  "GET" "POST " 등의 문자열
-           ex) setRequestProperty(field, value) :
-
-   - request 는 별도의 Thread 로 진행!
-   - 위 Thread에서 화면 UI 접근하려면 (당연히) Handler 사용
-*/
-
+import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 import android.os.Handler;
@@ -23,15 +9,30 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.io.PrintWriter;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.nio.Buffer;
 
+/* HTTP 요청하기
+    - 메니페스트 설정 하기 : android.permission.INTERNET 권한
+    - <application> 에 추가 usesCleartextTraffic="true"
+        HTTP와 같은 cleartext 네트워크 트래픽을 사용할지 여부를 나타내는 flag로
+        이 플래그가 flase 로 되어 있으면, 플랫폼 구성 요소 (예 : HTTP 및 FTP 스택, DownloadManager, MediaPlayer)는
+        일반 텍스트 트래픽 사용에 대한 앱의 요청을 거부하게 됩니다. 이 flag를 설정하게 되면 모든 cleartext 트래픽은 허용처리가 됩니다
+
+    - URL 객체 만들기 -> HttpURLConnection 객체 만들기
+        setXXX() 메소르도 Conneciton 세팅
+            ex) setRequestMethod(method) :  "GET" "POST " 등의 문자열
+            ex) setRequestProperty(field, value) :
+
+    - request 는 별도의 Thread 로 진행!
+    - 위 Thread에서 화면 UI 접근하려면 (당연히) Handler 사용
+ */
 public class MainActivity extends AppCompatActivity {
 
     EditText etUrl;
@@ -56,65 +57,65 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
 
                 final String urlStr = etUrl.getText().toString();
-                //HTTP request 는 별도의 Thread 로 진행해야한다.
+                // HTTP request 는 별도의 Thread 로 진행해야 한다!
                 new Thread(new Runnable() {
                     @Override
                     public void run() {
                         request(urlStr);
                     }
-                });
+                }).start();
+
             }
         });
 
         btnClear.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                tvResult.setText("");   //내용지우기
+                tvResult.setText("");  // 내용 지우기
             }
         });
 
 
+    } // end onCreate()
 
 
-    }//end onCreate()
-
-    private void request(String urlStr) {
-    final StringBuffer sb = new StringBuffer();
+    public void request(String urlStr){
+        final StringBuilder sb = new StringBuilder();
 
         BufferedReader reader = null;
         HttpURLConnection conn = null;
 
         try {
             URL url = new URL(urlStr);
-            conn = (HttpURLConnection) url.openConnection();
+            conn = (HttpURLConnection)url.openConnection();
 
+            if(conn != null){
+                conn.setConnectTimeout(5000);  // timeout 시간 설정. 경과하면 SocketTimeoutException 발생
+                conn.setUseCaches(false);     // 캐시 사용 안함.
+                conn.setRequestMethod("GET");   // GET 방식 request
 
-            if (conn != null){
-                conn.setConnectTimeout(5000);   //TIMEOUT 시간 설정 , 경과하면 SockerTimeoutException 발생
-                conn.setUseCaches(false);        //캐시 사용 안함.
-                conn.setRequestMethod("GET");    //GET 방식 request
+                conn.setDoInput(true);    // URLConnection 을 입력으로 사용. (true),   (false) -> 출력용
 
-                conn.setDoInput(true);    //URLConnection 을 입력으로 사용. (true) , (false) -> 출력
+                int responseCode = conn.getResponseCode();  // response code 값.  성공하면 200
 
-                int responseCode = conn.getResponseCode();   // response code 값 . 성공하면 200
-
-                if ( responseCode == HttpURLConnection.HTTP_OK){   //200 HTTP_OK
-                        reader = new BufferedReader(new InputStreamReader(conn.getInputStream()));
-                        String line = null;
-                        while(true){
-                            line = reader.readLine();
-                            if (line == null) break;
-                            sb.append(line + "\n");
-                        }
+                if(responseCode == HttpURLConnection.HTTP_OK){ // 200 HTTP_OK
+                    reader = new BufferedReader(new InputStreamReader(conn.getInputStream()));
+                    String line = null;
+                    while(true) {
+                        line = reader.readLine();
+                        if(line == null) break;
+                        sb.append(line + "\n");
+                    }
                 }
 
             }
-        }catch (IOException e) {
+
+        } catch (IOException e) {
             e.printStackTrace();
-        }finally {
+        } finally {
             try {
-                if (reader!=null)reader.close();
-                if (conn!=null) conn.disconnect();
+                if(reader != null) reader.close();
+                if(conn != null) conn.disconnect();
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -123,11 +124,31 @@ public class MainActivity extends AppCompatActivity {
         handler.post(new Runnable() {
             @Override
             public void run() {
-                tvResult.setText("응답결과  -> " + sb.toString());
+                tvResult.setText("응답 -> " + sb.toString());
             }
         });
 
-    }//end request()
 
 
-}//end Activity
+
+    } // end request()
+
+
+
+
+
+
+} // end Activity
+
+
+
+
+
+
+
+
+
+
+
+
+
