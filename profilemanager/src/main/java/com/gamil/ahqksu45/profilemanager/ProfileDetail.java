@@ -48,8 +48,8 @@ public class ProfileDetail extends AppCompatActivity {
 
 
 
-        Button btnBack = findViewById(R.id.btnBack);
-        btnBack.setOnClickListener(new View.OnClickListener() {
+        Button btnback = findViewById(R.id.btnback);
+        btnback.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 // 리스트로 돌아가기

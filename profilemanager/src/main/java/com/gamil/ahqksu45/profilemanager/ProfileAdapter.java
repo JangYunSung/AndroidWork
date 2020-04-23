@@ -143,7 +143,7 @@ public class ProfileAdapter extends RecyclerView.Adapter<ProfileAdapter.ViewHold
 
                 } // end 생성자
 
-                // Phonebook 데이터를 받아서 멤버변수 세팅
+                // profile 데이터를 받아서 멤버변수 세팅
                 public void setItem(Profile item){
                     tvName.setText(item.getName());
                     tvPhone.setText(item.getPhonenum());

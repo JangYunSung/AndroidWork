@@ -2,7 +2,7 @@ package com.gamil.ahqksu45.profilemanager;
 
 import java.io.Serializable;
 
-// 전화번호부 데이터를 담을 클래스
+// 회원정보를 데이터를 담을 클래스
 public class Profile implements Serializable {
     String profileid;
     String name;
@@ -15,7 +15,7 @@ public class Profile implements Serializable {
     String card ;
     String bigo ;
 
-    // 제맘 알죠?
+
     public Profile() {
     }
 
@@ -112,4 +112,4 @@ public class Profile implements Serializable {
     public void setBigo(String bigo) {
         this.bigo = bigo;
     }
-} // end Phonebook
+} // end profile

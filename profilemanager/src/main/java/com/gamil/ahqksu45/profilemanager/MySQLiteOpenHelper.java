@@ -39,7 +39,7 @@ public class MySQLiteOpenHelper extends SQLiteOpenHelper {
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         Log.d("myapp", "SQLiteOpenHelper] onUpgrade호출:" + oldVersion + "->" + newVersion);
 
-        String sql = "DROP TABLE IF EXISTS mytable";   // 기존 테이블 삭제
+        String sql = "DROP TABLE IF EXISTS profile";   // 기존 테이블 삭제
         db.execSQL(sql);
         onCreate(db);   // 다시 테이블 생성
 

@@ -2,23 +2,27 @@ package com.gamil.ahqksu45.profilemanager;
 
 import android.content.ContentValues;
 import android.content.Intent;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteException;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import java.util.List;
 
 public class Add extends AppCompatActivity {
 
     String dbName = "profile.db";
     int dbVersion = 1;
     MySQLiteOpenHelper helper;
-    SQLiteDatabase db;
-    String tableName = "profile";
+    static SQLiteDatabase db;
+    static String tableName = "profile";
     EditText etname, etaddress , etjumin , etemail , etprofileid,etprofileno ,etphonenum,etcardnum,etbank ,etbigo;
     Button btninsert;
 
@@ -43,8 +47,8 @@ public class Add extends AppCompatActivity {
             Log.e("myapp", "데이터 베이스를 열수 없슴");  // Logcat 의 error 에 표시됨.
         }
 
-        Button btnChild1 = findViewById(R.id.addback);
-        btnChild1.setOnClickListener(new View.OnClickListener() {
+        Button btnback = findViewById(R.id.btnback);
+        btnback.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(), Main.class);
@@ -70,7 +74,6 @@ public class Add extends AppCompatActivity {
                 String bigo = etbigo.getText().toString();
 
 
-
                 if("".equals(name)){
 
                     return;
@@ -90,7 +93,7 @@ public class Add extends AppCompatActivity {
                 }
 
                 insert(profileid, name, a, address ,b , profileno, bank, email , c , bigo);
-
+                Log.d("myapp", "파일에 등록완료");
             }
         });
 
@@ -123,4 +126,41 @@ public class Add extends AppCompatActivity {
         Log.d("myapp", result + "개 row INSERT 성공");
 
     };
+    void select(){
+        // SELECT 문을 위한 query() 메소드
+        Cursor c = db.query(tableName, null, null, null, null, null, null);
+        while(c.moveToNext()){
+            String id = c.getString(0);
+            String name = c.getString(1);
+            Number phonenum = c.getInt(2);
+            String address = c.getString(3);
+            Number jumin = c.getInt(4);
+            String profileno = c.getString(5);
+            String bank = c.getString(6);
+            String email = c.getString(7);
+            String card = c.getString(8);
+            String bigo = c.getString(9);
+
+            String msg = String.format("id: %s \n name: %s \n  phonenum: %d \n " +
+                    "address: %s \n  jumin: %d \n profileno: %s \n bank: %s \n email: %s \n " +
+                    "card: %s \n bigo: %s", id, name, phonenum, address, jumin,profileno,bank,email,card,bigo);
+
+
+
+            Log.d("myapp", msg);
+        } // end while
+
+
+        //키보드 내리기
+        InputMethodManager imm = (InputMethodManager)getSystemService(INPUT_METHOD_SERVICE);
+        imm.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(),0);
+
+
+
+
+    }
+
+
+
+
 }

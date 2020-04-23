@@ -22,7 +22,7 @@ public class MainActivity extends AppCompatActivity {
         rv = findViewById(R.id.rv);
 
         // RecyclerView 를 사용하기 위해서는 LayoutManager 지정해주어야 한다.
-        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
+        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
 
         //RecyclerView.LayoutManager layoutManager = new GridLayoutManager(this, 2);
 
