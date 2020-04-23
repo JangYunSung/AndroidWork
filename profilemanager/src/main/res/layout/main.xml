@@ -18,10 +18,10 @@
 
         <ImageButton
             android:id="@+id/btnmenu"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
+            android:layout_width="32dp"
+            android:layout_height="60dp"
             android:layout_weight="1"
-            />
+            android:src="@drawable/aa" />
 
         <SearchView
             android:id="@+id/search"
@@ -32,18 +32,18 @@
 
         <ImageButton
             android:id="@+id/ibsearch"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            />
+            android:src="@android:drawable/ic_menu_search" />
 
 
         <ImageButton
             android:id="@+id/ibadd"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            />
+            android:src="@android:drawable/ic_menu_add" />
 
     </LinearLayout>
 
