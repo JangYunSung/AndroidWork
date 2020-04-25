@@ -48,7 +48,7 @@ public class ProfileDetail extends AppCompatActivity {
 
 
 
-        Button btnback = findViewById(R.id.btnback);
+        Button btnback = findViewById(R.id.btnback1);
         btnback.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

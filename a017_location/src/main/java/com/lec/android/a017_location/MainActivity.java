@@ -1,11 +1,11 @@
 package com.lec.android.a017_location;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Context;
 import android.location.LocationManager;
 import android.os.Bundle;
 import android.widget.TextView;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import java.util.List;
 

@@ -17,16 +17,17 @@
 
         <activity
             android:name=".Add"
-            android:label=" Main -> Add "
             android:parentActivityName=".Main">
 
         </activity>
-        <activity android:name=".Main">
+        <activity android:name=".Main"
+            android:parentActivityName=".Add">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+
         </activity>
     </application>
 
