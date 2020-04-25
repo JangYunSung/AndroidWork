@@ -1,11 +1,17 @@
 package com.naver.ahqksu45.android.profilemanager2;
 
+import android.app.ActionBar;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class DatabaseHelper {
+
+
     private static SQLiteDatabase db;
     private Context context;
 
@@ -49,7 +55,7 @@ public class DatabaseHelper {
         String sql = "SELECT COUNT(NAME)" +
                 "FROM sqlite_master " +
                 "WHERE type = 'table' " +
-                "AND name = 'profile";
+                "AND name = 'profile' ";
 
 
         Cursor c = db.rawQuery(sql,null);
@@ -61,11 +67,11 @@ public class DatabaseHelper {
     }
 
 
-    public void insertAdderssData(AdderssInfo adderssInfo){
+    public void insertAddressData(AdderssInfo adderssInfo){
 
         Log.d("profile QUERY " , "insert DB!!!!" );
 
-        String sql = context.getString(R.string.INSER_QUERY);
+        String sql = context.getString(R.string.INSERT_QUERY);
         sql = String.format(sql,""+adderssInfo.getName(),adderssInfo.getPhone()
                 //더추가
         );
@@ -76,5 +82,9 @@ public class DatabaseHelper {
     }
 
 
+    List<AdderssInfo> addressList = new ArrayList<AdderssInfo>();
+    addressList = databaseHelper.selectAddressData();
+
+    addrList.setAdapter(new AddrListAdaptor(addressList,this));
 }
 

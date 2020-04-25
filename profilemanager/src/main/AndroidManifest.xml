@@ -12,22 +12,18 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-
-       <activity android:name=".ProfileDetail"/>
-
+        <activity android:name=".ProfileDetail" />
         <activity
             android:name=".Add"
-            android:parentActivityName=".Main">
-
-        </activity>
-        <activity android:name=".Main"
+            android:parentActivityName=".Main"></activity>
+        <activity
+            android:name=".Main"
             android:parentActivityName=".Add">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-
         </activity>
     </application>
 
