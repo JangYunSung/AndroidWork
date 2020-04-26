@@ -33,8 +33,12 @@ public class Sub2Activity extends AppCompatActivity {
 
     public void onClick(View v) {
         switch (v.getId()) {
-            case R.id.btnSave:
+            case R.id.btnupdate:
                 Intent resultIntent = new Intent();
+
+
+
+
                 // 새로 수정된 editText 값을 받기위해 전역변수로 빼고 수정된 값을 intent 에 저장
                 resultIntent.putExtra("name", etSelectedName.getText().toString());
                 resultIntent.putExtra("phone", etSelectedPhone.getText().toString());
@@ -42,7 +46,7 @@ public class Sub2Activity extends AppCompatActivity {
                 setResult(RESULT_OK, resultIntent);
                 break;
 
-            case R.id.btnCancel:
+            case R.id.sub2cancel:
                 setResult(RESULT_CANCELED); //취소 결과값 설정
                 break;
 

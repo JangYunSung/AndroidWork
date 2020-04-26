@@ -35,7 +35,7 @@ public class MainActivity extends AppCompatActivity {
         addressList.add(new MyData("이름 ", "번호"));
 
         //어뎁터 생성
-        addressAdapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, addressList);
+        addressAdapter = new ArrayAdapter(this, android.R.layout.simple_expandable_list_item_1, addressList);
 
         // 어탭터와 리스트뷰를 연결
         IvAddressList = (ListView) findViewById(R.id.listview);
@@ -76,6 +76,7 @@ public class MainActivity extends AppCompatActivity {
         //반환 결과 확인 부분, 호출한 액티비티를 종료하고 결과값을 전달 받으면 자동으로 호출됨
         // StartActivityForResult() 호출 시 사용한 RequsetCode 일치 검사
         // 마지막 매개변수 data는 결과값을 담고 있는 intent
+        super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == SUB_ACTIVITY_1) {
             //결과 코드 검사
             switch (resultCode) {

@@ -24,6 +24,7 @@ public class Sub1Activity extends AppCompatActivity {
                 //입력받은 값을 intent 에 저장 putExtra 이용하여 자료 저장)
 
                 Intent resultIntent = new Intent();
+                //파일에 있는 내용을 저장하기 ---
                 resultIntent.putExtra("name",etName.getText().toString());
                 resultIntent.putExtra("phone",etPhone.getText().toString());
 
