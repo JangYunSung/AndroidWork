@@ -2,14 +2,12 @@ package com.gmail.ahqksu45.android.profile_manager;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.PersistableBundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
 
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import java.util.ArrayList;
@@ -35,7 +33,7 @@ public class MainActivity extends AppCompatActivity {
         addressList.add(new MyData("이름 ", "번호"));
 
         //어뎁터 생성
-        addressAdapter = new ArrayAdapter(this, android.R.layout.simple_expandable_list_item_1, addressList);
+        addressAdapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, addressList);
 
         // 어탭터와 리스트뷰를 연결
         IvAddressList = (ListView) findViewById(R.id.listview);

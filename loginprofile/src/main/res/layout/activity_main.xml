@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/colorPrimary"
+    tools:context="kr.co.dothome.braverokmc.managerment.MainActivity">
+
+    <TextView
+        android:id="@+id/welcome"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="TextView"
+        android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+        android:textColor="@color/colorWhite"
+        android:layout_marginTop="10dp"
+        />
+
+    <TextView
+        android:id="@+id/idTextText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="당신의 아이디"
+
+        android:background="@drawable/textview_main"
+        android:textColor="@color/colorWhite"
+        android:layout_marginTop="10dp"
+        />
+
+    <TextView
+        android:id="@+id/idText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="TextView"
+        android:textColor="@color/colorWhite"
+        android:layout_marginTop="10dp"
+        android:textAppearance="@style/TextAppearance.AppCompat.Display1" />
+
+
+    <TextView
+        android:id="@+id/text1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="당신의 비밀번호"
+        android:background="@drawable/textview_main"
+        android:textColor="@color/colorWhite"
+        android:layout_marginTop="10dp"
+        />
+
+
+    <TextView
+        android:id="@+id/pswordText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="TextView"
+        android:textColor="@color/colorWhite"
+        android:layout_marginTop="10dp"
+        android:textAppearance="@style/TextAppearance.AppCompat.Display1" />
+
+    <Button
+        android:id="@+id/manageMentButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="회원관리"
+        android:layout_gravity="center_horizontal"
+        android:background="@drawable/button_login"
+        android:layout_marginTop="30dp"
+        android:textColor="#ffffff"
+        />
+
+
+</LinearLayout>

@@ -5,17 +5,25 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.EditText;
+import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class MainActivity extends AppCompatActivity {
 
     EditText editText1, editText2;
     TextView textView;
+    ListView listView;
 
     String databaseName, tableName;
 
@@ -23,6 +31,9 @@ public class MainActivity extends AppCompatActivity {
 
     SQLiteDatabase database;
     CustomerDatabaseHelper databaseHelper;
+
+    List<Member> members =new ArrayList<>();
+//    AdapterCursor adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,6 +43,7 @@ public class MainActivity extends AppCompatActivity {
         editText1=(EditText)findViewById(R.id.editText1);
         editText2=(EditText)findViewById(R.id.editText2);
         textView=(TextView)findViewById(R.id.text1);
+        listView=(ListView)findViewById(R.id.list_view);
 
     }
 
@@ -95,16 +107,70 @@ public class MainActivity extends AppCompatActivity {
                         tableName=editText2.getText().toString();
                     }
                     if(database!=null){
-                        String sql ="select name, age, mobile from " +tableName ;
+                        String sql ="select _id , name, age, mobile from " +tableName ;
                         Cursor cursor =database.rawQuery(sql, null);
+
+
+                        //인덱스 값 _id 는 커서 업뎁터 사용시 필수 항목이다.
+                      /*  startManagingCursor(cursor);
+
+                        String[] columns=new String[]{ "name", "age", "mobile"};
+                        int[] to=new int[] {R.id.name,  R.id.age,  R.id.mobile};
+
+                        // import android.support.v4.widget.SimpleCursorAdapter;
+                        final SimpleCursorAdapter
+                                cursorAdapter=
+                                new SimpleCursorAdapter(this, R.layout.customer_item,
+                                        cursor, columns, to,1);
+
+                        runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                listView.setAdapter(cursorAdapter);
+                                cursorAdapter.notifyDataSetChanged();
+                            }
+                        });
+*/
+
+/*
+                        LayoutInflater inflater =(LayoutInflater)this.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+                        View inflat = inflater.inflate(R.layout.customer_item, null,  true);*/
+
+                        /*
+
+                        http://braverokmc.dothome.co.kr/m02/android/view/292
+
+
+                        simple Aadpter 에러
+
+                                    수정할 것
+    */
+/*
+                        에러
+                        String[] columns=new String[]{ "name", "age", "mobile"};
+                        int[] to=new int[] {R.id.name,  R.id.age,  R.id.mobile};
+                        AdapterCursor adapter = new AdapterCursor(this, R.layout.customer_item, cursor ,columns, to);
+                        listView.setAdapter(adapter);
+*/
+
+
+
                         int count =cursor.getCount();
                         for(int i=0; i<count; i++){
+
                             cursor.moveToNext();
-                            String name =cursor.getString(0);
-                            int age =cursor.getInt(1);
-                            String mobile =cursor.getString(2);
-                            println("레코드 # "+ i+" :  " + name + " ," + age + " ," + mobile);
+                            int id=cursor.getInt(0);
+                            String name =cursor.getString(1);
+                            int age =cursor.getInt(2);
+                            String mobile =cursor.getString(3);
+                            Member member=new Member(id, name, age, mobile);
+                            members.add(member);
+                            println("레코드 # "+ id+" :  " + name + " ," + age + " ," + mobile);
                         }
+
+                        MyAdapter adapter =new MyAdapter(getApplicationContext(), R.layout.customer_item, members);
+                        listView.setAdapter(adapter);
+
                         if(cursor!=null) cursor.close();
                     }
                 }catch(Exception e){
@@ -112,8 +178,45 @@ public class MainActivity extends AppCompatActivity {
                     e.printStackTrace();
                 }
                 break;
+        }
+
+    }
+
+    //커스텀 아답터(내부 클래스)
+    class MyAdapter extends ArrayAdapter<Member> {
+
+        public MyAdapter(Context context, int resource) {
+            super(context, resource);
+        }
+
+        public MyAdapter(Context context, int resource, int textViewResourceId) {
+            super(context, resource, textViewResourceId);
+        }
+
+        public MyAdapter(Context context, int resource, List<Member> objects) {
+            super(context, resource, objects);
+        }
 
 
+        @Override
+        public View getView(int position, View convertView, ViewGroup parent) {
+            View v =convertView;
+            TextView name, age, mobile;
+            if(v==null){
+                LayoutInflater li =getLayoutInflater();
+                v=li.inflate(R.layout.customer_item, null);
+
+            }
+            final Member dto =members.get(position);
+
+            name =(TextView)v.findViewById(R.id.name);
+            age =(TextView)v.findViewById(R.id.age);
+            mobile =(TextView)v.findViewById(R.id.mobile);
+
+            name.setText(dto.getName());
+            age.setText(String.valueOf(dto.getAge()));
+            mobile.setText(dto.getMobile());
+            return v;
         }
 
     }
