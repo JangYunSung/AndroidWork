@@ -36,8 +36,25 @@ public class MainActivity extends AppCompatActivity {
         addressAdapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, addressList);
 
         // 어탭터와 리스트뷰를 연결
-        IvAddressList = (ListView) findViewById(R.id.listview);
+        IvAddressList = (ListView) findViewById(R.id.listview);//리스트 뷰 정의하시고
         IvAddressList.setAdapter(addressAdapter);
+
+//
+//        lv= (ListView) findViewById(android.R.id.list);
+//
+//        File[] listFiles =(new File("/sdcard/camera/image").listFiles()); //해당 경로를 설정하여 파일배열에 넣어줍니다.
+//
+//        IvAddressList<String> list = new ArrayList<String>(); //넣어준 스트링을
+//        for( File file : listFiles )                        //리스트에
+//            list.add(file.getName());                     //추가 해 줍니다.
+//
+//        fileList = new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1,list); //리스트에 뿌려주고요 위에건 기본 리스트고 아래건 선택 버튼이 있는 리스트겠죠..
+//
+//        lv.setAdapter(fileList); //리스트를 아답터에 셋팅하여 화면에 뿌려 줍니다.
+//
+
+
+
 
         // 리스트 항복 롱클릭 시 새로운 Activity를 호출하며 현재 클릭한 항복의 연락처를 전달
         IvAddressList.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
